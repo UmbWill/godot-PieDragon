@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cry7n3iti8glv"]
+
+[ext_resource type="Script" uid="uid://cwv1ducbr8tw1" path="res://collectible.gd" id="1_rd2yi"]
+[ext_resource type="Texture2D" uid="uid://cs6g8jxruk1ab" path="res://art/apple1.png" id="2_yciwo"]
+[ext_resource type="Texture2D" uid="uid://b3l2f2obth72b" path="res://art/apple2.png" id="3_h1l3x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yciwo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oc26g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yciwo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_h1l3x")
+}],
+"loop": true,
+"name": &"spark",
+"speed": 3.0
+}]
+
+[node name="Collectible" type="RigidBody2D" unique_id=1544628871 groups=["collectible"]]
+scale = Vector2(1.5, 1.5)
+gravity_scale = 0.0
+script = ExtResource("1_rd2yi")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=287453051]
+light_mask = 2
+shape = SubResource("CircleShape2D_yciwo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=356192352]
+sprite_frames = SubResource("SpriteFrames_oc26g")
+animation = &"spark"
+frame_progress = 0.03513531
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1899445154]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

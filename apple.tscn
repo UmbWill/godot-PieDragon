@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bdxc8fe35m4ya"]
+
+[ext_resource type="Texture2D" uid="uid://d3bbu70ixpml4" path="res://art/appletree_appleburned.png" id="1_3ed3y"]
+[ext_resource type="Script" uid="uid://2a4re73xvkie" path="res://apple.gd" id="1_n78qv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n78qv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3ed3y")
+}],
+"loop": true,
+"name": &"apple_down",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n78qv"]
+radius = 14.3178215
+
+[node name="Apple" type="RigidBody2D" unique_id=333067685]
+position = Vector2(197, 30)
+collision_mask = 0
+gravity_scale = 0.103
+script = ExtResource("1_n78qv")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1015051852]
+position = Vector2(4.75, 5.25)
+scale = Vector2(1.38, 1.42)
+sprite_frames = SubResource("SpriteFrames_n78qv")
+animation = &"apple_down"
+frame_progress = 0.18068382
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1828174482]
+position = Vector2(5, 3)
+shape = SubResource("CircleShape2D_n78qv")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=814998683]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

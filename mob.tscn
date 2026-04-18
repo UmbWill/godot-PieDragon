@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cbkfr1csxm413"]
+
+[ext_resource type="Script" uid="uid://u34igouvgx14" path="res://mob.gd" id="1_nokgg"]
+[ext_resource type="Texture2D" uid="uid://bn6ntuhlykcfq" path="res://art/bat-down.png" id="2_ubaqv"]
+[ext_resource type="Texture2D" uid="uid://dbbqfrlaq6pnr" path="res://art/bat-up.png" id="3_p11y5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dy6sc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ubaqv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_p11y5")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ubaqv"]
+
+[node name="RigidBody2D" type="RigidBody2D" unique_id=1916201481 groups=["mob"]]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_nokgg")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1373284061]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_dy6sc")
+animation = &"fly"
+frame = 1
+frame_progress = 0.1736097
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=477842034]
+shape = SubResource("CircleShape2D_ubaqv")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1410306710]
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

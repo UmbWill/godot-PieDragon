@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cfqeumqw0ord4"]
+
+[ext_resource type="Script" uid="uid://dok3elgtkydqc" path="res://potion.gd" id="1_174ht"]
+[ext_resource type="Texture2D" uid="uid://c1jka8kywb3u6" path="res://art/potion.png" id="2_8parx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_174ht"]
+
+[node name="Potion" type="RigidBody2D" unique_id=157743165 groups=["potion"]]
+gravity_scale = 0.0
+script = ExtResource("1_174ht")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=70683701]
+light_mask = 2
+shape = SubResource("CapsuleShape2D_174ht")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1960653295]
+texture = ExtResource("2_8parx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
